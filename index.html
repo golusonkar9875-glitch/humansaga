@@ -4,20 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HumanSaga – Stories that define us</title>
-  <meta name="description" content="HumanSaga – Stories, biographies and comics about real and fictional lives in English and Hindi." />
+  <meta name="description" content="HumanSaga – A bilingual (English + Hindi) platform for real stories, biographies, fictional characters and comics." />
 
   <style>
     :root {
-      --bg: #050816;
-      --bg-soft: #0b1120;
+      --bg: #020617;
+      --bg-soft: #020617;
       --card: #020617;
       --accent: #f97316;
-      --accent-soft: rgba(249, 115, 22, 0.15);
+      --accent-soft: rgba(249, 115, 22, 0.18);
+      --accent-2: #22c55e;
       --text: #e5e7eb;
       --muted: #9ca3af;
-      --border-subtle: rgba(148, 163, 184, 0.35);
+      --border-subtle: rgba(148, 163, 184, 0.4);
       --radius-lg: 18px;
-      --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.85);
+      --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.9);
     }
 
     * {
@@ -28,7 +29,7 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      background: radial-gradient(circle at top, #0b1120 0, #020617 55%, #000 100%);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -44,7 +45,7 @@
     }
 
     .container {
-      max-width: 1080px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
@@ -54,7 +55,7 @@
       top: 0;
       z-index: 40;
       backdrop-filter: blur(16px);
-      background: rgba(2, 6, 23, 0.9);
+      background: rgba(2, 6, 23, 0.94);
       border-bottom: 1px solid rgba(15, 23, 42, 0.9);
     }
 
@@ -76,7 +77,7 @@
       width: 26px;
       height: 26px;
       border-radius: 999px;
-      background: radial-gradient(circle at 0 0, #f97316, #fb923c, #0f172a);
+      background: radial-gradient(circle at 0 0, #f97316, #facc15, #22c55e, #0f172a);
       box-shadow: 0 0 22px rgba(249, 115, 22, 0.9);
     }
 
@@ -88,9 +89,9 @@
 
     .logo-text-main {
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
     }
 
     .logo-text-sub {
@@ -100,7 +101,7 @@
 
     .nav-links {
       display: flex;
-      gap: 0.7rem;
+      gap: 0.6rem;
       font-size: 0.9rem;
       color: var(--muted);
     }
@@ -119,7 +120,7 @@
     }
 
     main {
-      padding: 2.5rem 0 3rem;
+      padding: 2.5rem 0 3.5rem;
     }
 
     .section {
@@ -128,8 +129,8 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 2.2rem;
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.3fr);
+      gap: 2.4rem;
       align-items: center;
     }
 
@@ -168,7 +169,7 @@
     .hero-bilingual {
       font-size: 0.86rem;
       color: var(--muted);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.3rem;
     }
 
     .hero-actions {
@@ -308,6 +309,18 @@
       border: 1px solid var(--border-subtle);
       padding: 0.95rem 1rem;
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.9);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+      cursor: default;
+    }
+
+    .card.clickable {
+      cursor: pointer;
+    }
+
+    .card.clickable:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 36px rgba(15, 23, 42, 0.95);
+      border-color: rgba(249, 115, 22, 0.7);
     }
 
     .card-kicker {
@@ -351,6 +364,14 @@
       color: var(--muted);
     }
 
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.78rem;
+    }
+
     .ad-slot {
       border-radius: var(--radius-lg);
       border: 1px dashed rgba(148, 163, 184, 0.6);
@@ -359,17 +380,12 @@
       color: var(--muted);
       background: rgba(15, 23, 42, 0.9);
       text-align: center;
+      margin-bottom: 0.8rem;
     }
 
     .ad-slot span {
       color: var(--accent);
       font-weight: 500;
-    }
-
-    .language-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.5rem;
     }
 
     .newsletter {
@@ -413,12 +429,103 @@
       color: #64748b;
     }
 
-    .category-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.6rem;
+    .language-note {
       font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Overlay / Reader */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.96);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 1rem;
+    }
+
+    .overlay.hidden {
+      display: none;
+    }
+
+    .overlay-inner {
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: auto;
+      background: #020617;
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+      padding: 1.2rem 1.3rem;
+    }
+
+    .overlay-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .overlay-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .overlay-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .overlay-content {
+      font-size: 0.9rem;
+      color: var(--muted);
+      white-space: pre-line;
+      margin-bottom: 0.8rem;
+    }
+
+    .overlay-close {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+    }
+
+    .comic-image {
+      max-width: 100%;
+      max-height: 60vh;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: block;
+      margin: 0 auto 0.8rem;
+    }
+
+    .comic-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .comic-controls button {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      padding: 0.3rem 0.8rem;
+      font-size: 0.82rem;
+      cursor: pointer;
     }
 
     footer {
@@ -495,6 +602,7 @@
           <a href="#stories">Stories</a>
           <a href="#biographies">Biographies</a>
           <a href="#comics">Comics</a>
+          <a href="#contact">Contact</a>
           <a href="#join">Join</a>
         </div>
       </nav>
@@ -503,7 +611,7 @@
 
   <main class="container">
     <!-- HERO -->
-    <section class="section hero">
+    <section class="section hero" id="top">
       <div>
         <div class="hero-kicker">HumanSaga · Story & Biography Blog</div>
         <h1 class="hero-title">
@@ -515,12 +623,13 @@
           inspiring lives, comics and more.
         </p>
         <p class="hero-bilingual">
-          Read and write in <strong>English</strong> and <strong>Hindi</strong>.  
-          Sacchi kahaniyan, filmy kahaniyan, aur comics – sab ek hi jagah ✨
+          Read and write in <strong>English</strong>, <strong>Hindi</strong> and
+          <strong>Hinglish</strong>. Sacchi kahaniyan, filmy kahaniyan, aur comics –
+          sab ek hi jagah ✨
         </p>
         <div class="hero-actions">
-          <a href="#stories" class="btn btn-primary">Start Reading</a>
-          <a href="#join" class="btn btn-ghost">Write for HumanSaga</a>
+          <button class="btn btn-primary" onclick="scrollToSection('stories')">Start Reading</button>
+          <button class="btn btn-ghost" onclick="scrollToSection('join')">Write for HumanSaga</button>
         </div>
       </div>
 
@@ -536,77 +645,31 @@
           every kind of human.
         </p>
         <div class="hero-meta">
-          <div class="pill">🌍 Global, Indian-first audience</div>
+          <div class="pill">🌍 Indian-first, global audience</div>
           <div class="pill">🔤 English + Hindi + Hinglish</div>
           <div class="pill">💸 Built to monetize with ads & partners</div>
         </div>
       </aside>
     </section>
 
-    <!-- FEATURED STORIES -->
+    <!-- STORIES -->
     <section class="section" id="stories">
       <div class="section-heading">
         <div>
           <h2 class="section-title">Featured Stories</h2>
           <p class="section-sub">Mix of English & Hindi kahaniyan, updated by you.</p>
         </div>
-        <a href="#" class="section-sub">View all stories →</a>
       </div>
-
       <div class="category-pills">
         <span class="pill">✨ Real Life</span>
         <span class="pill">🧠 Professionals</span>
         <span class="pill">🎭 Fiction</span>
         <span class="pill">🎨 Comics</span>
       </div>
-
-      <div class="grid grid-3">
-        <article class="card">
-          <div class="card-kicker">Real Story · English</div>
-          <h3 class="card-title">The night an intern saved a city hospital</h3>
-          <p class="card-meta">Doctor · Emergency · Motivation</p>
-          <p class="card-text">
-            A young medical intern faces her first real crisis when the power
-            goes out at 3 AM and the ICU is hanging by a thread...
-          </p>
-          <div class="card-tags">
-            <span class="card-tag">Doctor</span>
-            <span class="card-tag">Inspiration</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-kicker">Kahani · Hindi</div>
-          <h3 class="card-title">Engineering waali chai ki dukaan</h3>
-          <p class="card-meta">Engineer · Small town · Hinglish</p>
-          <p class="card-text">
-            Ek chhote shehar ka ladka, jise coding ka shauk tha, kaise chai ki
-            dukaan se startup tak pahunch gaya – yeh uski asli kahani hai...
-          </p>
-          <div class="card-tags">
-            <span class="card-tag">Engineer</span>
-            <span class="card-tag">Hinglish</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-kicker">Fiction</div>
-          <h3 class="card-title">The boy who could pause time for 5 seconds</h3>
-          <p class="card-meta">Fantasy · Coming of age</p>
-          <p class="card-text">
-            Every time Aarav blinked, the world stopped – but only for five
-            seconds. Long enough to change everything, or nothing at all.
-          </p>
-          <div class="card-tags">
-            <span class="card-tag">Fiction</span>
-            <span class="card-tag">Short story</span>
-          </div>
-        </article>
-      </div>
-
+      <div id="stories-grid" class="grid grid-3"></div>
       <p class="language-note">
         You can post in <strong>English</strong>, <strong>Hindi</strong>, or
-        mix both. Har kahani ke saath language tag daaliye (EN / HI / Hinglish).
+        mix both. Har kahani ke saath language tag dalo (EN / HI / Hinglish).
       </p>
     </section>
 
@@ -618,36 +681,7 @@
           <p class="section-sub">From famous icons to next-door heroes.</p>
         </div>
       </div>
-
-      <div class="grid grid-2">
-        <article class="card">
-          <div class="card-kicker">Biography</div>
-          <h3 class="card-title">From village teacher to ISRO scientist</h3>
-          <p class="card-meta">Real life · India</p>
-          <p class="card-text">
-            A timeline-style biography format. Perfect for telling the story
-            of engineers, doctors, artists, entrepreneurs and everyday heroes.
-          </p>
-          <div class="card-tags">
-            <span class="card-tag">Timeline format</span>
-            <span class="card-tag">Career</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-kicker">जीवन गाथा · Hindi</div>
-          <h3 class="card-title">Auto driver jiska beta IAS bana</h3>
-          <p class="card-meta">Struggle · Family · Success</p>
-          <p class="card-text">
-            Example of Hindi biographies focusing on struggle, emotions and
-            turning points – jahan reader ko apni hi kahani nazar aaye.
-          </p>
-          <div class="card-tags">
-            <span class="card-tag">Hindi</span>
-            <span class="card-tag">Inspiration</span>
-          </div>
-        </article>
-      </div>
+      <div id="bio-grid" class="grid grid-2"></div>
     </section>
 
     <!-- COMICS -->
@@ -657,60 +691,20 @@
           <h2 class="section-title">Comics & Visual Stories</h2>
           <p class="section-sub">Short panels, punchlines and life in frames.</p>
         </div>
-        <a href="#" class="section-sub">View all comics →</a>
       </div>
-
-      <div class="grid grid-3">
-        <article class="card">
-          <div class="card-kicker">Slice of life</div>
-          <h3 class="card-title">“Engineer vs Monday” 4-panel comic</h3>
-          <p class="card-meta">Humour · Office life</p>
-          <p class="card-text">
-            Use this section to upload images or link to your webcomic pages.
-            Title + small summary + “Read comic” button.
-          </p>
-          <div class="card-tags">
-            <span class="card-tag">Comic</span>
-            <span class="card-tag">Humour</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-kicker">Doctor life</div>
-          <h3 class="card-title">OPD Chronicles</h3>
-          <p class="card-meta">Medical · Satire</p>
-          <p class="card-text">
-            Funny, honest comics about hospital life, patients and midnight
-            duty scenes – relatability + shareability = reach.
-          </p>
-          <div class="card-tags">
-            <span class="card-tag">Doctor</span>
-            <span class="card-tag">Comics</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-kicker">Hinglish</div>
-          <h3 class="card-title">“Parents vs Passion”</h3>
-          <p class="card-meta">Family · Youth</p>
-          <p class="card-text">
-            Hinglish dialogues, Indian parents, dreams and dhoom – perfect
-            for Instagram + blog cross-posting.
-          </p>
-          <div class="card-tags">
-            <span class="card-tag">Hinglish</span>
-            <span class="card-tag">Relatable</span>
-          </div>
-        </article>
-      </div>
+      <div id="comics-grid" class="grid grid-3"></div>
+      <p class="language-note">
+        For comics, upload images (JPG/PNG) to a <code>comics/</code> folder in GitHub
+        and update the panel image names in the JavaScript data below.
+      </p>
     </section>
 
-    <!-- AD SLOT / MONETIZATION -->
+    <!-- MONETIZATION + SHARE -->
     <section class="section">
       <div class="section-heading">
         <div>
-          <h2 class="section-title">Monetization Area</h2>
-          <p class="section-sub">Planned for Google AdSense & partners.</p>
+          <h2 class="section-title">Monetization Plan</h2>
+          <p class="section-sub">Reserved for Google AdSense & brand partners.</p>
         </div>
       </div>
 
@@ -720,32 +714,112 @@
         blog gets approved. Place similar ad blocks between stories, in sidebar,
         and inside articles.
       </div>
+
+      <div class="section-heading" style="margin-top:1.4rem;">
+        <div>
+          <h2 class="section-title">Share HumanSaga</h2>
+          <p class="section-sub">
+            Help more people discover these stories. Share this site with friends.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="shareSite()">
+          📤 Share this site
+        </button>
+        <button class="btn btn-ghost" type="button" onclick="copyLink()">
+          📋 Copy link
+        </button>
+        <a
+          class="btn btn-ghost"
+          id="whatsapp-share"
+          href="#"
+          target="_blank"
+          rel="noreferrer"
+        >
+          🟢 Share on WhatsApp
+        </a>
+      </div>
+      <p class="language-note">
+        Share link ko WhatsApp groups, Instagram bio, YouTube description,
+        ya Telegram channels par daaliye for more reach.
+      </p>
     </section>
 
     <!-- NEWSLETTER / JOIN -->
     <section class="section" id="join">
       <div class="newsletter">
         <div>
-          <h2 class="section-title">Join the HumanSaga community</h2>
+          <h2 class="section-title">Write for HumanSaga</h2>
           <p>
-            Get a weekly email of the best stories and biographies in English
-            and Hindi. Plus, early access if you want to write on HumanSaga and
-            earn with your content in future.
+            Want to share your kahani or someone else’s journey? We’ll soon open
+            writer submissions. For now, drop your email and we’ll notify you when
+            writing slots open.
           </p>
         </div>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('This is a demo. Connect to a real email service later.');">
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('This is a demo. In future you can connect this with a real email marketing tool.');">
           <input
             type="email"
             class="newsletter-input"
-            placeholder="Enter your email (demo)"
+            placeholder="Enter your email (demo only for now)"
             required
           />
           <button type="submit" class="btn btn-primary">Notify me</button>
         </form>
       </div>
       <p class="language-note">
-        Aap newsletter dono language mein rakh sakte hain – short English
-        summary + small Hindi line for connection.
+        Future Phase: connect this to Mailchimp / ConvertKit or your own backend.
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="newsletter">
+        <div>
+          <h2 class="section-title">Contact HumanSaga</h2>
+          <p>
+            Have a story to share, a biography request, or want to collaborate?
+            Reach out directly using email or this quick form (demo).
+          </p>
+          <p class="language-note">
+            Aap simple email se bhi contact kar sakte hain 👇
+          </p>
+          <p style="font-size:0.88rem; margin-top:0.4rem;">
+            📧 Email:
+            <a href="mailto:humansagaofficial@gmail.com">
+              humansagaofficial@gmail.com
+            </a>
+          </p>
+        </div>
+
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Demo form only. Later you can connect Formspree, Google Forms, or a backend to receive messages.');">
+          <input
+            type="text"
+            class="newsletter-input"
+            placeholder="Your name"
+            required
+          />
+          <input
+            type="email"
+            class="newsletter-input"
+            placeholder="Your email"
+            required
+          />
+          <input
+            type="text"
+            class="newsletter-input"
+            placeholder="Subject (story, collab, feedback...)"
+          />
+          <button type="submit" class="btn btn-primary">
+            Send message (demo)
+          </button>
+        </form>
+      </div>
+
+      <p class="language-note">
+        Future Phase: Connect this to real backend / WordPress contact plugin so
+        you can receive and reply to emails properly.
       </p>
     </section>
   </main>
@@ -755,14 +829,338 @@
       © <span id="year"></span> HumanSaga · Stories that define us · Built by me.
     </div>
     <div style="margin-top:0.3rem;">
-      Future links: <a href="#">About</a> · <a href="#">Contact</a> ·
-      <a href="#">Privacy</a>
+      Future links: <a href="#top">Back to top</a> ·
+      <a href="#">About</a> · <a href="#">Privacy</a>
     </div>
   </footer>
 
+  <!-- READER OVERLAY (Stories + Comics) -->
+  <div id="reader-overlay" class="overlay hidden">
+    <div class="overlay-inner">
+      <div class="overlay-header">
+        <div class="overlay-title" id="reader-title"></div>
+        <button class="overlay-close" onclick="closeReader()">Close ✕</button>
+      </div>
+      <div class="overlay-meta" id="reader-meta"></div>
+      <div class="overlay-content" id="reader-content"></div>
+      <div id="comic-wrapper" class="hidden">
+        <img id="comic-image" class="comic-image" src="" alt="Comic panel" />
+        <div class="comic-controls">
+          <button type="button" onclick="prevPanel()">← Previous</button>
+          <span id="comic-progress"></span>
+          <button type="button" onclick="nextPanel()">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // ========= BASIC CONFIG =========
+    const siteUrl = "https://golusonkar9875-glitch.github.io/humansaga/";
+
+    // ========= DATA (Phase 2: story & comic templates) =========
+    const stories = [
+      {
+        id: "doctor-intern-night",
+        type: "story",
+        kicker: "Real Story · EN",
+        title: "The night an intern saved a city hospital",
+        meta: "Doctor · Emergency · Motivation",
+        language: "English",
+        tags: ["Doctor", "Inspiration"],
+        excerpt:
+          "A young medical intern faces her first real crisis when the power goes out at 3 AM and the ICU is hanging by a thread...",
+        fullText:
+          "It was 3:07 AM when the power first blinked.\n\nThe monitors screamed, the silence between each beep felt louder than any sound. Dr. Aisha had been an intern for exactly 18 days. She knew the theory of emergency protocols, but that night, the theory walked out and reality walked in.\n\nWhile senior doctors were stuck in traffic because of a storm, she decided to stop waiting for help and became the help herself. This story can continue with your own detailed scenes, emotions, and dialogues. Replace this demo text with your full story.",
+      },
+      {
+        id: "chai-engineer",
+        type: "story",
+        kicker: "Kahani · HI/EN",
+        title: "Engineering waali chai ki dukaan",
+        meta: "Engineer · Small town · Hinglish",
+        language: "Hinglish",
+        tags: ["Engineer", "Hinglish"],
+        excerpt:
+          "Ek chhote shehar ka ladka, jise coding ka shauk tha, kaise chai ki dukaan se startup tak pahunch gaya – yeh uski kahani hai...",
+        fullText:
+          "Ravi ki pehli salary chai ki dukaan se aayi thi, software company se nahi.\n\nSubah 6 baje se, woh apne papa ke saath stall par khada hota. Dopahar mein college, raat ko coding. Log kehte the 'chai banaane waale ko engineer kaun banayega?', lekin uske dimaag mein ek hi baat thi: 'agar main logic likh sakta hoon, main life bhi likh sakta hoon.'\n\nYahaan aap apni poori kahani likh sakte hain – struggles, failures, first client, and finally the startup launch.",
+      },
+      {
+        id: "time-5-seconds",
+        type: "story",
+        kicker: "Fiction",
+        title: "The boy who could pause time for 5 seconds",
+        meta: "Fantasy · Coming of age",
+        language: "English",
+        tags: ["Fiction", "Short story"],
+        excerpt:
+          "Every time Aarav blinked, the world stopped – but only for five seconds. Long enough to change everything, or nothing at all.",
+        fullText:
+          "Aarav discovered his power during a school exam.\n\nHe blinked in panic and suddenly the ceiling fans froze mid-air, chalk dust hung like constellations, and the second hand on the wall clock stood perfectly still. He counted in his mind — one, two, three, four, five — blinked again, and the world snapped back.\n\nWhat would you do with five stolen seconds from time? This story can continue with creative scenes where he misuses the power, then learns what really matters. Replace this with your full fiction story.",
+      },
+    ];
+
+    const biographies = [
+      {
+        id: "teacher-to-isro",
+        type: "bio",
+        kicker: "Biography",
+        title: "From village teacher to ISRO scientist",
+        meta: "Real life · India",
+        tags: ["Career", "Inspiration"],
+        excerpt:
+          "A timeline-style biography showing how consistent small steps from a village classroom reached the launchpad.",
+        fullText:
+          "• 1992 – A small government school in a remote village. A young teacher explains planets using chalk circles on a cracked blackboard.\n• 2001 – The same teacher’s student wins a state-level science competition.\n• 2010 – That student joins ISRO as a junior scientist.\n\nIs biography format ko aap timeline style mein likh sakte hain – bullet points, phases, turning points, failures and breakthroughs.",
+      },
+      {
+        id: "auto-driver-ias",
+        type: "bio",
+        kicker: "जीवन गाथा · Hindi",
+        title: "Auto driver jiska beta IAS bana",
+        meta: "Struggle · Family · Success",
+        tags: ["Hindi", "Family"],
+        excerpt:
+          "Story of a father who drove an auto all his life so his son could study without worrying about fees.",
+        fullText:
+          "Subah 5 baje se raat ke 11 baje tak chalne wala auto, ek hi sapne ka fuel tha: 'beta ko woh zindagi mile jo mujhe nahi mili.'\n\nIs biography mein aap school struggle, coaching ke din, first attempt failure, second attempt success – sab detail mein likh sakte hain. Reader ko lage ki yeh uski apni hi story hai.",
+      },
+    ];
+
+    const comics = [
+      {
+        id: "engineer-vs-monday",
+        type: "comic",
+        kicker: "Slice of life",
+        title: "Engineer vs Monday",
+        meta: "Humour · Office life",
+        tags: ["Comic", "Humour"],
+        excerpt: "4-panel comic about an engineer mentally fighting Monday morning standup.",
+        panels: [
+          "comics/engineer-monday-1.jpg",
+          "comics/engineer-monday-2.jpg",
+          "comics/engineer-monday-3.jpg",
+          "comics/engineer-monday-4.jpg",
+        ],
+      },
+      {
+        id: "opd-chronicles",
+        type: "comic",
+        kicker: "Doctor life",
+        title: "OPD Chronicles",
+        meta: "Medical · Satire",
+        tags: ["Doctor", "Comic"],
+        excerpt: "Funny scenes from OPD where every patient says 'bas thoda sa pain hai'.",
+        panels: [
+          "comics/opd-1.jpg",
+          "comics/opd-2.jpg",
+          "comics/opd-3.jpg",
+        ],
+      },
+      {
+        id: "parents-vs-passion",
+        type: "comic",
+        kicker: "Hinglish",
+        title: "Parents vs Passion",
+        meta: "Family · Youth",
+        tags: ["Hinglish", "Relatable"],
+        excerpt: "Indian parents vs creative career dreams – ek classic emotional-comedy combo.",
+        panels: [
+          "comics/parents-1.jpg",
+          "comics/parents-2.jpg",
+          "comics/parents-3.jpg",
+        ],
+      },
+    ];
+
+    // ========= RENDER HELPERS =========
+    function createTagSpan(tag) {
+      const span = document.createElement("span");
+      span.className = "card-tag";
+      span.textContent = tag;
+      return span;
+    }
+
+    function renderCards() {
+      const storiesGrid = document.getElementById("stories-grid");
+      const bioGrid = document.getElementById("bio-grid");
+      const comicsGrid = document.getElementById("comics-grid");
+
+      stories.forEach((s) => {
+        const card = document.createElement("article");
+        card.className = "card clickable";
+        card.onclick = () => openStory(s.id);
+
+        card.innerHTML = `
+          <div class="card-kicker">${s.kicker}</div>
+          <h3 class="card-title">${s.title}</h3>
+          <p class="card-meta">${s.meta}</p>
+          <p class="card-text">${s.excerpt}</p>
+        `;
+
+        const tagsDiv = document.createElement("div");
+        tagsDiv.className = "card-tags";
+        (s.tags || []).forEach((t) => tagsDiv.appendChild(createTagSpan(t)));
+        card.appendChild(tagsDiv);
+        storiesGrid.appendChild(card);
+      });
+
+      biographies.forEach((b) => {
+        const card = document.createElement("article");
+        card.className = "card clickable";
+        card.onclick = () => openStory(b.id);
+
+        card.innerHTML = `
+          <div class="card-kicker">${b.kicker}</div>
+          <h3 class="card-title">${b.title}</h3>
+          <p class="card-meta">${b.meta}</p>
+          <p class="card-text">${b.excerpt}</p>
+        `;
+        const tagsDiv = document.createElement("div");
+        tagsDiv.className = "card-tags";
+        (b.tags || []).forEach((t) => tagsDiv.appendChild(createTagSpan(t)));
+        card.appendChild(tagsDiv);
+        bioGrid.appendChild(card);
+      });
+
+      comics.forEach((c) => {
+        const card = document.createElement("article");
+        card.className = "card clickable";
+        card.onclick = () => openComic(c.id);
+
+        card.innerHTML = `
+          <div class="card-kicker">${c.kicker}</div>
+          <h3 class="card-title">${c.title}</h3>
+          <p class="card-meta">${c.meta}</p>
+          <p class="card-text">${c.excerpt}</p>
+        `;
+        const tagsDiv = document.createElement("div");
+        tagsDiv.className = "card-tags";
+        (c.tags || []).forEach((t) => tagsDiv.appendChild(createTagSpan(t)));
+        card.appendChild(tagsDiv);
+        comicsGrid.appendChild(card);
+      });
+    }
+
+    // ========= READER (STORY + COMIC) =========
+    let currentComic = null;
+    let currentPanelIndex = 0;
+
+    function openStory(id) {
+      const item = stories.find((s) => s.id === id) || biographies.find((b) => b.id === id);
+      if (!item) return;
+      const overlay = document.getElementById("reader-overlay");
+      const titleEl = document.getElementById("reader-title");
+      const metaEl = document.getElementById("reader-meta");
+      const contentEl = document.getElementById("reader-content");
+      const comicWrapper = document.getElementById("comic-wrapper");
+
+      titleEl.textContent = item.title;
+      metaEl.textContent = item.meta || "";
+      contentEl.textContent = item.fullText || "";
+      comicWrapper.classList.add("hidden");
+
+      overlay.classList.remove("hidden");
+    }
+
+    function openComic(id) {
+      const item = comics.find((c) => c.id === id);
+      if (!item) return;
+
+      currentComic = item;
+      currentPanelIndex = 0;
+
+      const overlay = document.getElementById("reader-overlay");
+      const titleEl = document.getElementById("reader-title");
+      const metaEl = document.getElementById("reader-meta");
+      const contentEl = document.getElementById("reader-content");
+      const comicWrapper = document.getElementById("comic-wrapper");
+
+      titleEl.textContent = item.title;
+      metaEl.textContent = item.meta || "";
+      contentEl.textContent = "Tap Next/Previous to navigate panels. Upload your comic images to the 'comics/' folder with the same names used here.";
+      comicWrapper.classList.remove("hidden");
+
+      updateComicPanel();
+      overlay.classList.remove("hidden");
+    }
+
+    function updateComicPanel() {
+      if (!currentComic) return;
+      const img = document.getElementById("comic-image");
+      const progress = document.getElementById("comic-progress");
+      img.src = currentComic.panels[currentPanelIndex];
+      progress.textContent = `Panel ${currentPanelIndex + 1} of ${currentComic.panels.length}`;
+    }
+
+    function nextPanel() {
+      if (!currentComic) return;
+      if (currentPanelIndex < currentComic.panels.length - 1) {
+        currentPanelIndex++;
+        updateComicPanel();
+      } else {
+        closeReader();
+      }
+    }
+
+    function prevPanel() {
+      if (!currentComic) return;
+      if (currentPanelIndex > 0) {
+        currentPanelIndex--;
+        updateComicPanel();
+      }
+    }
+
+    function closeReader() {
+      const overlay = document.getElementById("reader-overlay");
+      overlay.classList.add("hidden");
+      currentComic = null;
+      currentPanelIndex = 0;
+    }
+
+    // ========= SHARE & UTIL =========
+    function copyLink() {
+      navigator.clipboard
+        .writeText(siteUrl)
+        .then(() => alert("Link copied! You can paste it anywhere to share."))
+        .catch(() =>
+          alert("Could not copy automatically. You can copy manually: " + siteUrl)
+        );
+    }
+
+    function shareSite() {
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "HumanSaga – Stories that define us",
+            text: "Check out this bilingual (English + Hindi) storytelling site:",
+            url: siteUrl,
+          })
+          .catch(() => {});
+      } else {
+        copyLink();
+      }
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function setupWhatsAppLink() {
+      const wa = document.getElementById("whatsapp-share");
+      const msg =
+        "Check out this story and biography site HumanSaga: " + siteUrl;
+      const href =
+        "https://wa.me/?text=" + encodeURIComponent(msg);
+      wa.href = href;
+    }
+
+    // ========= INIT =========
     document.getElementById("year").textContent = new Date().getFullYear();
+    renderCards();
+    setupWhatsAppLink();
   </script>
 </body>
 </html>
-
