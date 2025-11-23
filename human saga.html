@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HumanSaga – Stories that define us</title>
+  <meta name="description" content="HumanSaga – Stories, biographies and comics about real and fictional lives in English and Hindi." />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1120;
+      --card: #020617;
+      --accent: #f97316;
+      --accent-soft: rgba(249, 115, 22, 0.15);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --radius-lg: 18px;
+      --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: rgba(2, 6, 23, 0.9);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    nav {
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #f97316, #fb923c, #0f172a);
+      box-shadow: 0 0 22px rgba(249, 115, 22, 0.9);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08rem;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: 0.15s ease border-color, 0.15s ease background, 0.15s ease color;
+    }
+
+    .nav-links a:hover {
+      border-color: rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+    }
+
+    main {
+      padding: 2.5rem 0 3rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 2.7rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(120deg, #f97316, #facc15, #22c55e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-tagline span {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-bilingual {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.65rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.13s ease, box-shadow 0.13s ease, background 0.13s ease, border-color 0.13s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(130deg, #f97316, #fbbf24, #22c55e);
+      color: #111827;
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.9);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 1);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: var(--border-subtle);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      color: var(--text);
+    }
+
+    .hero-card {
+      border-radius: 24px;
+      background: radial-gradient(circle at 0 0, rgba(249, 115, 22, 0.2), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.18), transparent 55%),
+        var(--bg-soft);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.2rem 1.3rem;
+    }
+
+    .hero-pill {
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      margin-bottom: 0.9rem;
+      color: var(--muted);
+    }
+
+    .dot-live {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-card-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--muted);
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .section-sub {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at 0 0, var(--accent-soft), transparent 55%),
+        rgba(15, 23, 42, 0.96);
+      border: 1px solid var(--border-subtle);
+      padding: 0.95rem 1rem;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.9);
+    }
+
+    .card-kicker {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .card-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-meta {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+    }
+
+    .card-tag {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--muted);
+    }
+
+    .ad-slot {
+      border-radius: var(--radius-lg);
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      padding: 0.8rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+      text-align: center;
+    }
+
+    .ad-slot span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .language-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .newsletter {
+      border-radius: 24px;
+      background: radial-gradient(circle at 100% 0, rgba(59, 130, 246, 0.2), transparent 55%),
+        radial-gradient(circle at 0 100%, rgba(249, 115, 22, 0.2), transparent 55%),
+        rgba(15, 23, 42, 0.98);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.1rem 1.3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .newsletter p {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .newsletter-input {
+      flex: 1 1 160px;
+      min-width: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.96);
+      padding: 0.55rem 0.9rem;
+      font-size: 0.86rem;
+      color: var(--text);
+      outline: none;
+    }
+
+    .newsletter-input::placeholder {
+      color: #64748b;
+    }
+
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.78rem;
+    }
+
+    footer {
+      padding: 1.8rem 0 2.4rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .newsletter {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      main {
+        padding-top: 2rem;
+      }
+
+      .section {
+        margin-bottom: 2.3rem;
+      }
+
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        gap: 1.6rem;
+      }
+
+      .newsletter {
+        padding: 1rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <div class="logo-mark"></div>
+          <div class="logo-text">
+            <span class="logo-text-main">HUMANSAGA</span>
+            <span class="logo-text-sub">Stories that define us</span>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#stories">Stories</a>
+          <a href="#biographies">Biographies</a>
+          <a href="#comics">Comics</a>
+          <a href="#join">Join</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="section hero">
+      <div>
+        <div class="hero-kicker">HumanSaga · Story & Biography Blog</div>
+        <h1 class="hero-title">
+          Human <span class="hero-highlight">stories</span> in
+          every language of emotion.
+        </h1>
+        <p class="hero-tagline">
+          <span>Stories that define us</span> – real journeys, fictional worlds,
+          inspiring lives, comics and more.
+        </p>
+        <p class="hero-bilingual">
+          Read and write in <strong>English</strong> and <strong>Hindi</strong>.  
+          Sacchi kahaniyan, filmy kahaniyan, aur comics – sab ek hi jagah ✨
+        </p>
+        <div class="hero-actions">
+          <a href="#stories" class="btn btn-primary">Start Reading</a>
+          <a href="#join" class="btn btn-ghost">Write for HumanSaga</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-pill">
+          <span class="dot-live"></span>
+          <span>Open for readers & writers</span>
+        </div>
+        <h2 class="hero-card-title">What is HumanSaga?</h2>
+        <p class="hero-card-text">
+          A home for <strong>biographies, character stories, comics</strong> and
+          real-life journeys from doctors, engineers, artists, students and
+          every kind of human.
+        </p>
+        <div class="hero-meta">
+          <div class="pill">🌍 Global, Indian-first audience</div>
+          <div class="pill">🔤 English + Hindi + Hinglish</div>
+          <div class="pill">💸 Built to monetize with ads & partners</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- FEATURED STORIES -->
+    <section class="section" id="stories">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">Featured Stories</h2>
+          <p class="section-sub">Mix of English & Hindi kahaniyan, updated by you.</p>
+        </div>
+        <a href="#" class="section-sub">View all stories →</a>
+      </div>
+
+      <div class="category-pills">
+        <span class="pill">✨ Real Life</span>
+        <span class="pill">🧠 Professionals</span>
+        <span class="pill">🎭 Fiction</span>
+        <span class="pill">🎨 Comics</span>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="card-kicker">Real Story · English</div>
+          <h3 class="card-title">The night an intern saved a city hospital</h3>
+          <p class="card-meta">Doctor · Emergency · Motivation</p>
+          <p class="card-text">
+            A young medical intern faces her first real crisis when the power
+            goes out at 3 AM and the ICU is hanging by a thread...
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Doctor</span>
+            <span class="card-tag">Inspiration</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">Kahani · Hindi</div>
+          <h3 class="card-title">Engineering waali chai ki dukaan</h3>
+          <p class="card-meta">Engineer · Small town · Hinglish</p>
+          <p class="card-text">
+            Ek chhote shehar ka ladka, jise coding ka shauk tha, kaise chai ki
+            dukaan se startup tak pahunch gaya – yeh uski asli kahani hai...
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Engineer</span>
+            <span class="card-tag">Hinglish</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">Fiction</div>
+          <h3 class="card-title">The boy who could pause time for 5 seconds</h3>
+          <p class="card-meta">Fantasy · Coming of age</p>
+          <p class="card-text">
+            Every time Aarav blinked, the world stopped – but only for five
+            seconds. Long enough to change everything, or nothing at all.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Fiction</span>
+            <span class="card-tag">Short story</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="language-note">
+        You can post in <strong>English</strong>, <strong>Hindi</strong>, or
+        mix both. Har kahani ke saath language tag daaliye (EN / HI / Hinglish).
+      </p>
+    </section>
+
+    <!-- BIOGRAPHIES -->
+    <section class="section" id="biographies">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">Biographies & Human Journeys</h2>
+          <p class="section-sub">From famous icons to next-door heroes.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="card-kicker">Biography</div>
+          <h3 class="card-title">From village teacher to ISRO scientist</h3>
+          <p class="card-meta">Real life · India</p>
+          <p class="card-text">
+            A timeline-style biography format. Perfect for telling the story
+            of engineers, doctors, artists, entrepreneurs and everyday heroes.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Timeline format</span>
+            <span class="card-tag">Career</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">जीवन गाथा · Hindi</div>
+          <h3 class="card-title">Auto driver jiska beta IAS bana</h3>
+          <p class="card-meta">Struggle · Family · Success</p>
+          <p class="card-text">
+            Example of Hindi biographies focusing on struggle, emotions and
+            turning points – jahan reader ko apni hi kahani nazar aaye.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Hindi</span>
+            <span class="card-tag">Inspiration</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMICS -->
+    <section class="section" id="comics">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">Comics & Visual Stories</h2>
+          <p class="section-sub">Short panels, punchlines and life in frames.</p>
+        </div>
+        <a href="#" class="section-sub">View all comics →</a>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="card-kicker">Slice of life</div>
+          <h3 class="card-title">“Engineer vs Monday” 4-panel comic</h3>
+          <p class="card-meta">Humour · Office life</p>
+          <p class="card-text">
+            Use this section to upload images or link to your webcomic pages.
+            Title + small summary + “Read comic” button.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Comic</span>
+            <span class="card-tag">Humour</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">Doctor life</div>
+          <h3 class="card-title">OPD Chronicles</h3>
+          <p class="card-meta">Medical · Satire</p>
+          <p class="card-text">
+            Funny, honest comics about hospital life, patients and midnight
+            duty scenes – relatability + shareability = reach.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Doctor</span>
+            <span class="card-tag">Comics</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-kicker">Hinglish</div>
+          <h3 class="card-title">“Parents vs Passion”</h3>
+          <p class="card-meta">Family · Youth</p>
+          <p class="card-text">
+            Hinglish dialogues, Indian parents, dreams and dhoom – perfect
+            for Instagram + blog cross-posting.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Hinglish</span>
+            <span class="card-tag">Relatable</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- AD SLOT / MONETIZATION -->
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">Monetization Area</h2>
+          <p class="section-sub">Planned for Google AdSense & partners.</p>
+        </div>
+      </div>
+
+      <div class="ad-slot">
+        <strong>Ad Space · 728×90 / Responsive</strong><br />
+        <span>Later you will paste your Google AdSense code here</span> once your
+        blog gets approved. Place similar ad blocks between stories, in sidebar,
+        and inside articles.
+      </div>
+    </section>
+
+    <!-- NEWSLETTER / JOIN -->
+    <section class="section" id="join">
+      <div class="newsletter">
+        <div>
+          <h2 class="section-title">Join the HumanSaga community</h2>
+          <p>
+            Get a weekly email of the best stories and biographies in English
+            and Hindi. Plus, early access if you want to write on HumanSaga and
+            earn with your content in future.
+          </p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('This is a demo. Connect to a real email service later.');">
+          <input
+            type="email"
+            class="newsletter-input"
+            placeholder="Enter your email (demo)"
+            required
+          />
+          <button type="submit" class="btn btn-primary">Notify me</button>
+        </form>
+      </div>
+      <p class="language-note">
+        Aap newsletter dono language mein rakh sakte hain – short English
+        summary + small Hindi line for connection.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      © <span id="year"></span> HumanSaga · Stories that define us · Built by me.
+    </div>
+    <div style="margin-top:0.3rem;">
+      Future links: <a href="#">About</a> · <a href="#">Contact</a> ·
+      <a href="#">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
